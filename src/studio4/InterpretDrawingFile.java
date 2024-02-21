@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 import javax.swing.JFileChooser;
-import javax.swing.SwingUtilities;
 
 import edu.princeton.cs.introcs.StdDraw;
 
@@ -19,6 +18,57 @@ public class InterpretDrawingFile {
 		chooser.showOpenDialog(null);
 		File f = new File(chooser.getSelectedFile().getPath());
 		Scanner in = new Scanner(f); //making Scanner with a File
-		
+
+		String shapeType = in.next();
+		int redComponent = in.nextInt();
+		int greenComponent = in.nextInt();
+		int blueComponent = in.nextInt();
+		boolean isFilled = in.nextBoolean();
+		double x = in.nextDouble();
+		double y = in.nextDouble();
+		double halfWidth = in.nextDouble();
+		double halfHeight = in.nextDouble();
+
+		if(shapeType.equals("rectangle")) {
+			if(isFilled = true)
+			{
+				StdDraw.setPenColor(redComponent, greenComponent, blueComponent);
+				StdDraw.filledRectangle(x, y, halfWidth, halfHeight);
+			}
+			else {
+				StdDraw.setPenColor(redComponent, greenComponent, blueComponent);
+				StdDraw.rectangle(x, y, halfWidth, halfHeight);
+			}
+		}
+		if(shapeType.equals("ellipse"))
+		{
+			if(isFilled = true)
+			{
+				StdDraw.setPenColor(redComponent, greenComponent, blueComponent);
+				StdDraw.filledEllipse(x, y, halfWidth, halfHeight);
+			}
+			else {
+				StdDraw.setPenColor(redComponent, greenComponent, blueComponent);
+				StdDraw.ellipse(x, y, halfWidth, halfHeight);
+			}
+		}
+		if(shapeType.equals("triangle"))
+		{
+			double x1 = in.nextDouble();
+			double x2 = in.nextDouble();
+			if(isFilled = true)
+			{
+				StdDraw.setPenColor(redComponent, greenComponent, blueComponent);
+				StdDraw.line(x, y, halfWidth, halfHeight);
+				StdDraw.line(halfWidth, halfHeight, x1, x2);
+				StdDraw.line(x1, x2, x, y);
+			}
+			else {
+				StdDraw.setPenColor(redComponent, greenComponent, blueComponent);
+				StdDraw.line(x, y, halfWidth, halfHeight);
+				StdDraw.line(halfWidth, halfHeight, x1, x2);
+				StdDraw.line(x1, x2, x, y);
+			}
+		}
 	}
 }
